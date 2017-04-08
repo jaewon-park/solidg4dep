@@ -19,7 +19,7 @@ RUN mkdir /sw \
     && mkdir build \
     && cd build \
     && wget http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.3.4.3.tgz \
-    && tar zxf clhep-2.3.4.3.tgz
+    && tar zxf clhep-2.3.4.3.tgz \
     && mkdir clhep-build \
     && cd clhep-build \
     && cmake -DCMAKE_INSTALL_PREFIX=$SITEROOT/external/clhep ../2.3.4.3/CLHEP \
