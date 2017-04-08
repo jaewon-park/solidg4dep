@@ -50,7 +50,7 @@ RUN mkdir /cern && cd /cern \
     && make install \
     && wget http://geant4.cern.ch/support/source/geant4.10.02.p03.tar.gz \
     && tar zxf geant4.10.02.p03.tar.gz \
-    && mkdir -p geant4-build
+    && mkdir -p geant4-build \
     && cd geant4-build \
     && cmake -DCMAKE_INSTALL_PREFIX=$SITEROOT/geant4 \
              -EXPAT_LIBRARY=/usr/lib64 \
