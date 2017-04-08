@@ -7,6 +7,7 @@ RUN apt-get install -y git dpkg-dev make g++ gcc cmake \
     binutils libx11-dev libxpm-dev libxft-dev \
     libxext-dev libpng12-dev libjpeg-turbo8-dev \
     libxerces-c-dev libxmu-dev \
+    freeglut3 freeglut3-dev \
     python gfortran libssl-dev wget libgsl0ldbl libgsl0-dev
 
 
