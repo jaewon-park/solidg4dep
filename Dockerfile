@@ -1,4 +1,4 @@
-Dockerfile
+FROM ubuntu:14.04
 
 MAINTAINER jaewon.park@vt.edu
 
