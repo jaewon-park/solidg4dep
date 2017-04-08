@@ -12,9 +12,23 @@ RUN apt-get install -y git dpkg-dev make g++ gcc cmake \
 
 
 ENV SITEROOT="/sw"
+ENV BUILDDIR="/sw/build"
+
 ENV PATH=$SITEROOT/external/cmake/bin:$PATH
 
-RUN mkdir /sw \
+ENV ROOT_TAR="root_v6.05.02.Linux-ubuntu14-x86_64-gcc4.8.tar.gz"
+ENV ROOT_DL="https://root.cern.ch/download/$ROOT_TAR"
+
+ENV ROOTSYS="/cern/root/"
+ENV PATH="$ROOTSYS/bin:$PATH"
+ENV LD_LIBRARY_PATH="$ROOTSYS/lib:$LD_LIBRARY_PATH"
+
+
+RUN mkdir /cern && cd /cern \
+    && wget $ROOT_DL \
+    && tar xzfv $ROOT_TAR \
+    && rm -rf $ROOT_TAR \
+    && mkdir /sw \
     && cd /sw \
     && mkdir external \
     && mkdir build \
@@ -33,5 +47,19 @@ RUN mkdir /sw \
     && cmake -DCMAKE_INSTALL_PREFIX=$SITEROOT/external/clhep ../2.3.4.3/CLHEP \
     && make -j 4 \
     && make test \
+    && make install \
+    && wget http://geant4.cern.ch/support/source/geant4.10.02.p03.tar.gz \
+    && tar zxf geant4.10.02.p03.tar.gz \
+    && mkdir -p geant4-build
+    && cd geant4-build \
+    && cmake -DCMAKE_INSTALL_PREFIX=$SITEROOT/geant4 \
+             -EXPAT_LIBRARY=/usr/lib64 \
+             -DGEANT4_INSTALL_DATA=ON \
+             -DGEANT4_USE_OPENGL_X11=ON \
+             -DXERCESC_LIBRARY=/usr/lib64/libxerces-c.so \
+             -DGEANT4_USE_GDML=ON \
+             -DGEANT4_USE_RAYTRACER_X11=ON \
+             ../geant4.10.02.p03 \
+    && make -j 4 \
     && make install
 
