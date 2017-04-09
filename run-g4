@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+export SITEROOT=/sw
+
+# root
+export ROOTSYS=$SITEROOT/external/root
+export PATH=$ROOTSYS/bin:$PATH
+export LD_LIBRARY_PATH=$ROOTSYS/lib
+export PYTHONPATH=$SITEROOT/external/root/lib
+
+# cmake
+export PATH=$PATH:$SITEROOT/external/cmake/bin
+
+# This will be used in cmake later
+export HEPMC_ROOT_DIR=$SITEROOT/external/HepMC
+
+# geant4
+source $SITEROOT/geant4/bin/geant4.sh
+
+# setup for geant4 with cmake
+export G4ROOT=$SITEROOT/geant4
+export CMAKE_MODULE_PATH=$G4ROOT/lib64/Geant4-10.2.3/Modules/
+alias cmake='cmake -DGeant4_DIR=$G4ROOT/lib64/Geant4-10.2.3/'
