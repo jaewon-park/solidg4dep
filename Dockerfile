@@ -65,3 +65,9 @@ RUN mkdir /cern && cd /cern \
     && make -j 4 \
     && make install
 
+
+ADD run-root /usr/local/sbin/run-g4
+
+WORKDIR /tmp/
+
+ENTRYPOINT ["run-g4"]
