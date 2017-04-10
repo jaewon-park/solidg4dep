@@ -38,7 +38,7 @@ RUN mkdir -p ~/GEANT4/build; \
     make -j`grep -c processor /proc/cpuinfo`; \
     make install; \
     echo ' . geant4.sh' >> ~/.bashrc \
-    echo 'export G4ROOT=$SITEROOT/geant4' >> ~/.bashrc \
+    echo 'export G4ROOT=~/GEANT4/build' >> ~/.bashrc \
     echo 'export CMAKE_MODULE_PATH=$G4ROOT/lib64/Geant4-10.1.2/Modules/' >> ~/.bashrc \
     echo "alias cmake='cmake -DGeant4_DIR=$G4ROOT/lib64/Geant4-10.1.2/'" >> ~/.bashrc \
     echo 'export ROOTSYS="/cern/root/"' >> ~/.bashrc \
